@@ -6,11 +6,11 @@ Webhook intermediário que limpa espaços extras e quebras de linha das mensagen
 
 Ao integrar Chatwoot + Evolution API + WhatsApp, as mensagens enviadas pelos atendentes chegavam com espaços e quebras de linha extras no final:
 
-```
-"Olá, como posso ajudar?\n\n  "
-```
+| Antes | Depois |
+|-------|--------|
+| ![Mensagem com espaços extras no WhatsApp](docs/before.png) | ![Mensagem limpa no WhatsApp](docs/after.png) |
 
-Resultado no WhatsApp: mensagem com linhas em branco visíveis abaixo do texto.
+As mensagens chegavam com linhas em branco visíveis abaixo do texto.
 
 ## A solução
 
@@ -95,7 +95,10 @@ http://msg-cleaner:8081/chatwoot/webhook/NOME_DA_INSTANCIA
 ├── Dockerfile           # Build multi-stage (imagem final ~10MB)
 ├── docker-compose.yml   # Serviço Docker com rede chat-bridge
 ├── .env                 # Configurações locais (não commitar)
-└── .env.example         # Modelo de configuração
+├── .env.example         # Modelo de configuração
+└── docs/
+    ├── before.png       # Screenshot: mensagem com problema
+    └── after.png        # Screenshot: mensagem limpa
 ```
 
 ## Monitorando os logs
