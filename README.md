@@ -36,7 +36,7 @@ O intermediário:
 **1. Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/chatwoot-intermediary-cleaner.git
+git clone https://github.com/joaoavilars/chatwoot_intermediary_cleaner.git
 cd chatwoot-intermediary-cleaner
 ```
 
