@@ -11,10 +11,17 @@ import (
 	"strings"
 )
 
-// cleanContent limpa o campo "content" do payload removendo espaços e quebras de linha extras
+// cleanContent limpa o campo "content" do payload:
+// - Remove a barra \ que o Chatwoot adiciona antes de quebras de linha intencionais
+// - Preserva as quebras de linha (\n) para que cheguem corretamente no WhatsApp
+// - Remove espaços e quebras de linha extras no início e fim da mensagem
 func cleanContent(data map[string]interface{}) {
 	if content, ok := data["content"].(string); ok {
-		data["content"] = strings.TrimSpace(content)
+		// Remove a \ antes de \n (ex: "linha1\\\nlinha2" → "linha1\nlinha2")
+		cleaned := strings.ReplaceAll(content, "\\\n", "\n")
+		// Remove espaços/quebras extras no início e fim
+		cleaned = strings.TrimSpace(cleaned)
+		data["content"] = cleaned
 	}
 }
 
